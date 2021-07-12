@@ -1,0 +1,42 @@
+version: 0.2
+
+env:
+  variables:
+    BUILD_ENV: "production"
+    S3_BUCKET: "quote-app"
+    CLOUDFRONT_DIST_ID: ""
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12.x
+
+    commands:
+      # temporary fix of YARN cert issue
+      # TODO: clean it up...
+      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+      -
+      # Update packages.
+      - apt-get update -y -q
+
+      # Install @angular/cli and app dependencies.
+      - echo Installing source NPM dependencies...
+      - npm install -g @angular/cli
+      - npm install
+
+  build:
+    commands:
+      # Build Angular application.
+      - echo Build started on `date`
+      - npm run build -- --configuration=${BUILD_ENV}
+
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'dist*'
+  discard-paths: yes
+
+cache:
+  paths:
+    - '/**/*'
