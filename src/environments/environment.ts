@@ -7,8 +7,8 @@ export const environment = {
   isAuthorizationEnabled: false,
   apiUrls: {
     auth: '',
-    quote: '', // Put here your QUOTE API BASE URL. E.g.: api or https://quote.com/api
-    share: '', // Put here your SHARE API BASE URL. E.g.: api or https://share.com/api
+    quote: 'http://ngquotesbackendebs-env.eba-giqztfme.us-east-1.elasticbeanstalk.com/api', // Put here your QUOTE API BASE URL. E.g.: api or https://quote.com/api
+    share: 'http://ngquotesbackendebs-env.eba-giqztfme.us-east-1.elasticbeanstalk.com/api', // Put here your SHARE API BASE URL. E.g.: api or https://share.com/api
   },
 };
 
